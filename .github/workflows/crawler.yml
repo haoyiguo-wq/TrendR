@@ -131,6 +131,14 @@ jobs:
             echo "Error: Config missing"
             exit 1
           fi
+          # 新增：验证关键词文件存在（关键！）
+          if [ ! -f config/frequency_words.txt ]; then
+            echo "Error: frequency_words.txt missing"
+            exit 1
+          fi
+          # 新增：打印关键词文件内容（用于调试，确认加载的是新配置）
+          echo "当前加载的关键词文件内容："
+          cat config/frequency_words.txt
 
       - name: Run crawler
         if: success()
